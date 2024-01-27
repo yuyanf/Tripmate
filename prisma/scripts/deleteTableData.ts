@@ -8,7 +8,11 @@ async function clearCityTable() {
     // Delete all records from the City table
     await prisma.city.deleteMany({});
 
-    console.log('All data from the City table has been cleared.');
+    // Reset the auto-increment id back to default (assuming it's SERIAL)
+    await prisma.$executeRaw`TRUNCATE TABLE "City" CASCADE`;
+    console.log(
+      'All data from the City table has been cleared, and the auto-increment id has been reset.'
+    );
   } catch (error) {
     console.error('Error clearing data from the City table:', error);
   } finally {

@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "City" ALTER COLUMN "country" DROP NOT NULL,
+ALTER COLUMN "countryCode" DROP NOT NULL,
+ALTER COLUMN "population" DROP NOT NULL;
