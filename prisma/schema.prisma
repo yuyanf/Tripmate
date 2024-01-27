@@ -1,3 +1,8 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider  = "postgresql"
   url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
@@ -12,34 +17,61 @@ model ItineraryItem {
   startTime   DateTime?
   endTime     DateTime?
   address     String?
-  reservation Json
+  reservation Json //if need /reserved or not
   itineraryId Int // Foreign key relationship with Intinerary
   itinerary   Itinerary @relation(fields: [itineraryId], references: [id])
-  tags        String[]
-  coverImgId  Int
+  tags        String[] //brunch or cafe or attraction etc
+  image       Int?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
 
 model Itinerary {
-  id        Int             @id @default(autoincrement())
-  date      DateTime
-  items     ItineraryItem[]
-  createdAt DateTime        @default(now())
-  updatedAt DateTime        @updatedAt
-  checkList Json?
+  id            Int             @id @default(autoincrement())
+  date          DateTime
+  items         ItineraryItem[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  checkList     Json?
+  destinationId Int
+  destination   Destination     @relation(fields: [destinationId], references: [id])
+}
+
+model Destination {
+  id        Int         @id @default(autoincrement())
+  cityId    Int
+  city      City        @relation(fields: [cityId], references: [id])
+  startDate DateTime
+  endDate   DateTime
+  items     Itinerary[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
   tripId    Int
-  trip      Trip            @relation(fields: [tripId], references: [id])
+  trip      Trip        @relation(fields: [tripId], references: [id])
 }
 
 model Trip {
-  id          Int         @id @default(autoincrement())
-  title       String
-  startDate   DateTime
-  endDate     DateTime
-  destination String
-  items       Itinerary[]
-  coverImgId  Int
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  id             Int           @id @default(autoincrement())
+  title          String
+  startDate      DateTime
+  endDate        DateTime
+  items          Destination[]
+  image          Int?
+  numberOfPeople Int
+  relationship   String?
+  totalBudget    String?
+  editors        String[] //user ids that are editor for this trip
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+}
+
+model City {
+  id      Int    @id @default(autoincrement())
+  name    String
+  lat     String
+  lng     String
+  country String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  Destination Destination[]
 }
