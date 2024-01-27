@@ -1,4 +1,8 @@
 "use strict";
+var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -36,65 +40,47 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// Import necessary dependencies
 var client_1 = require("@prisma/client");
-var fs = require("fs/promises");
 // Initialize Prisma client
 var prisma = new client_1.PrismaClient();
-// Define function to push data to the database
-function pushCitiesToDatabase() {
+function clearCityTable() {
     return __awaiter(this, void 0, void 0, function () {
-        var cities, _a, _b, citiesAbove150k, _i, citiesAbove150k_1, cityData, error_1;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
+        var error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _c.trys.push([0, 6, 7, 9]);
-                    _b = (_a = JSON).parse;
-                    return [4 /*yield*/, fs.readFile('../data/cities.json', 'utf-8')];
+                    _a.trys.push([0, 4, 5, 7]);
+                    // Delete all records from the City table
+                    return [4 /*yield*/, prisma.city.deleteMany()];
                 case 1:
-                    cities = _b.apply(_a, [_c.sent()]);
-                    citiesAbove150k = cities.filter(function (city) { return parseInt(city.population) > 150000; });
-                    _i = 0, citiesAbove150k_1 = citiesAbove150k;
-                    _c.label = 2;
+                    // Delete all records from the City table
+                    _a.sent();
+                    // Reset the auto-increment id back to default (assuming it's SERIAL)
+                    return [4 /*yield*/, prisma.$executeRaw(templateObject_1 || (templateObject_1 = __makeTemplateObject(["TRUNCATE TABLE \"City\" CASCADE"], ["TRUNCATE TABLE \"City\" CASCADE"])))];
                 case 2:
-                    if (!(_i < citiesAbove150k_1.length)) return [3 /*break*/, 5];
-                    cityData = citiesAbove150k_1[_i];
-                    // Create city record in the database using Prisma
-                    return [4 /*yield*/, prisma.city.create({
-                            data: {
-                                name: cityData.name,
-                                lat: cityData.coordinates.lat.toString(),
-                                lng: cityData.coordinates.lon.toString(),
-                                country: cityData.cou_name_en,
-                                population: parseInt(cityData.population),
-                                countryCode: cityData.country_code,
-                            },
-                        })];
+                    // Reset the auto-increment id back to default (assuming it's SERIAL)
+                    _a.sent();
+                    return [4 /*yield*/, prisma.$executeRaw(templateObject_2 || (templateObject_2 = __makeTemplateObject(["TRUNCATE TABLE \"City\" RESTART IDENTITY;"], ["TRUNCATE TABLE \"City\" RESTART IDENTITY;"])))];
                 case 3:
-                    // Create city record in the database using Prisma
-                    _c.sent();
-                    _c.label = 4;
+                    _a.sent();
+                    console.log('All data from the City table has been cleared, and the auto-increment id has been reset.');
+                    return [3 /*break*/, 7];
                 case 4:
-                    _i++;
-                    return [3 /*break*/, 2];
-                case 5:
-                    console.log('Cities data successfully pushed to the database.');
-                    return [3 /*break*/, 9];
-                case 6:
-                    error_1 = _c.sent();
-                    console.error('Error pushing cities data:', error_1);
-                    return [3 /*break*/, 9];
-                case 7: 
+                    error_1 = _a.sent();
+                    console.error('Error clearing data from the City table:', error_1);
+                    return [3 /*break*/, 7];
+                case 5: 
                 // Disconnect Prisma client
                 return [4 /*yield*/, prisma.$disconnect()];
-                case 8:
+                case 6:
                     // Disconnect Prisma client
-                    _c.sent();
+                    _a.sent();
                     return [7 /*endfinally*/];
-                case 9: return [2 /*return*/];
+                case 7: return [2 /*return*/];
             }
         });
     });
 }
-// Invoke function to push cities data to the database
-pushCitiesToDatabase();
+// Invoke function to clear the City table
+clearCityTable();
+var templateObject_1, templateObject_2;
