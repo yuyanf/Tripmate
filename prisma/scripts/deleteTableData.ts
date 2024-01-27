@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 async function clearCityTable() {
   try {
     // Delete all records from the City table
-    await prisma.city.deleteMany({});
+    await prisma.city.deleteMany();
 
     console.log('All data from the City table has been cleared.');
   } catch (error) {
