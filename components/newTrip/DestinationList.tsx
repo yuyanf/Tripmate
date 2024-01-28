@@ -2,8 +2,8 @@
 
 import { PlusIcon } from 'lucide-react';
 import { useState } from 'react';
-import DestinationInputs from './inputs/DestinationInputs';
-import { Button } from './ui/button';
+import DestinationInputs from './DestinationInputs';
+import { Button } from '../ui/button';
 
 const initialDestinations = [
   {

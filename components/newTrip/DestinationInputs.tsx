@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/tooltip';
 import { Trash } from 'lucide-react';
 import { IoSearchOutline } from 'react-icons/io5';
-import { DatePicker } from '../DatePicker';
+import { DatePicker } from './DatePicker';
 import { Button } from '../ui/button';
 
 interface DestinationFormProps {

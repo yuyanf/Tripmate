@@ -1,5 +1,5 @@
 import DestinationList from './DestinationList';
-import PeopleInputs from './inputs/PeopleInputs';
+import PeopleInputs from './PeopleInputs';
 
 const TripForm = () => {
   return (
