@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { BsBalloonHeartFill } from 'react-icons/bs';
 import { FaUserFriends } from 'react-icons/fa';
 import { MdFamilyRestroom } from 'react-icons/md';
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 
 enum WITH_WHOM {
   COUPLE = 'couple',
@@ -13,7 +13,7 @@ enum WITH_WHOM {
   FAMILY = 'family',
 }
 
-const PeopleForm = () => {
+const PeopleInputs = () => {
   const [people, setPeople] = useState(1);
   const [withWhom, setWithWhom] = useState<WITH_WHOM | undefined>(undefined);
 
@@ -34,35 +34,37 @@ const PeopleForm = () => {
   };
 
   return (
-    <div className='flex flex-col gap-6'>
-      <h2 className='text-xl font-medium tracking-tight'>
-        How many people are going?
-      </h2>
-      <div className='flex justify-between gap-2 rounded-md border border-gray-200 p-4'>
-        <div className='flex items-center gap-2'>
-          <p className='text-md border-border-color flex h-full items-center rounded-md border bg-gray-100 px-6 font-semibold'>
-            {people}
-          </p>
-          <span>{people === 1 ? 'Person' : 'People'}</span>
-        </div>
+    <div className='flex flex-col gap-8'>
+      <div className='flex flex-col gap-6'>
+        <h2 className='text-xl font-medium tracking-tight'>
+          How many people are going?
+        </h2>
+        <div className='flex justify-between gap-2 rounded-md border border-gray-200 p-1'>
+          <div className='flex items-center gap-2'>
+            <p className='text-md border-border-color flex h-full items-center rounded-md border bg-gray-100 px-6 font-semibold'>
+              {people}
+            </p>
+            <span>{people === 1 ? 'Person' : 'People'}</span>
+          </div>
 
-        <div className='flex gap-2'>
-          <Button
-            className='min-w-[40px]'
-            variant='outline'
-            size='icon'
-            onClick={handleMinusPeople}
-          >
-            <Minus className='h-3 w-3' />
-          </Button>
-          <Button
-            className='min-w-[40px]'
-            variant='outline'
-            size='icon'
-            onClick={handlePlusPeople}
-          >
-            <Plus className='h-3 w-3' />
-          </Button>
+          <div className='flex gap-2'>
+            <Button
+              className='min-w-[40px]'
+              variant='outline'
+              size='icon'
+              onClick={handleMinusPeople}
+            >
+              <Minus className='h-3 w-3' />
+            </Button>
+            <Button
+              className='min-w-[40px]'
+              variant='outline'
+              size='icon'
+              onClick={handlePlusPeople}
+            >
+              <Plus className='h-3 w-3' />
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -71,7 +73,7 @@ const PeopleForm = () => {
           <h3 className='text-lg font-medium tracking-tight'>
             Who is traveling with you?
           </h3>
-          <div className='flex justify-between gap-2 rounded-md border border-gray-200 p-4'>
+          <div className='flex justify-between gap-2 rounded-md'>
             {people <= 2 && (
               <Button
                 className='w-full'
@@ -105,4 +107,4 @@ const PeopleForm = () => {
   );
 };
 
-export default PeopleForm;
+export default PeopleInputs;

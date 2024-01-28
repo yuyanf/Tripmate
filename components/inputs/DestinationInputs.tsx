@@ -1,5 +1,3 @@
-'use client';
-
 import { Input } from '@/components/ui/iconInput';
 import {
   Tooltip,
@@ -9,24 +7,37 @@ import {
 } from '@/components/ui/tooltip';
 import { Trash } from 'lucide-react';
 import { IoSearchOutline } from 'react-icons/io5';
-import { DatePicker } from './DatePicker';
-import { Button } from './ui/button';
+import { DatePicker } from '../DatePicker';
+import { Button } from '../ui/button';
 
-interface DestinationCardProps {
+interface DestinationFormProps {
   destinations: any[];
-  onDelete: () => void;
+  onDelete: (id: number) => void;
+  id: number;
+  isFirst: boolean;
 }
 
-const DestinationCard = ({ destinations, onDelete }: DestinationCardProps) => {
+const DestinationInputs = ({
+  destinations,
+  onDelete,
+  id,
+  isFirst,
+}: DestinationFormProps) => {
   return (
-    <div className='flex flex-col gap-3 rounded-md border border-gray-200 px-6 py-10 duration-200'>
+    <div className='flex flex-col gap-3 rounded-md duration-200'>
       <div className='flex items-center justify-between gap-3'>
-        <span className='font-semibold text-gray-500'>Going next to</span>
+        <h2 className='text-xl font-medium tracking-tight'>
+          {isFirst ? 'Where do you want to go?' : 'Going next to'}
+        </h2>
         {destinations.length > 1 && (
           <TooltipProvider delayDuration={300}>
             <Tooltip>
               <TooltipTrigger>
-                <Button variant='outline' size='icon' onClick={onDelete}>
+                <Button
+                  variant='outline'
+                  size='icon'
+                  onClick={() => onDelete(id)}
+                >
                   <Trash className='h-4 w-4' />
                 </Button>
               </TooltipTrigger>
@@ -46,4 +57,4 @@ const DestinationCard = ({ destinations, onDelete }: DestinationCardProps) => {
   );
 };
 
-export default DestinationCard;
+export default DestinationInputs;

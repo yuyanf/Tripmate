@@ -2,8 +2,7 @@
 
 import { PlusIcon } from 'lucide-react';
 import { useState } from 'react';
-
-import DestinationCard from './DestinationCard';
+import DestinationInputs from './inputs/DestinationInputs';
 import { Button } from './ui/button';
 
 const initialDestinations = [
@@ -15,7 +14,7 @@ const initialDestinations = [
   },
 ];
 
-const DestinationForm = () => {
+const DestinationList = () => {
   const [destinations, setDestinations] = useState<any[]>(initialDestinations);
 
   const addDestination = () => {
@@ -34,20 +33,19 @@ const DestinationForm = () => {
 
   return (
     <div className='flex flex-col gap-6'>
-      <h2 className='text-xl font-medium tracking-tight'>
-        Where do you want to go?
-      </h2>
-      <ul className='flex flex-col gap-8'>
+      {/* TODO: create unique indices for each DestinationInputs */}
+      <ul className='flex flex-col gap-14'>
         {destinations.map((destination, index) => (
           <li key={index}>
-            <DestinationCard
+            <DestinationInputs
+              id={index}
+              isFirst={index === 0}
               destinations={destinations}
-              onDelete={() => deleteDestination(destination.id)}
+              onDelete={deleteDestination}
             />
           </li>
         ))}
       </ul>
-
       <Button onClick={addDestination} className='mx-auto mt-6'>
         <PlusIcon className='mr-2 h-5 w-5' />
         Add destination
@@ -56,4 +54,4 @@ const DestinationForm = () => {
   );
 };
 
-export default DestinationForm;
+export default DestinationList;
