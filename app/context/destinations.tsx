@@ -21,8 +21,8 @@ type DestinationsContextType = {
   // People & Relationship
 
   //budget
-
-  //Collab email
+  email?: string;
+  updateEmail: (email: string) => void;
 };
 
 const initialDestinations = [
@@ -43,6 +43,8 @@ const DestinationsContext = createContext<DestinationsContextType | undefined>(
 export const DestinationsProvider = ({ children }: { children: ReactNode }) => {
   const [destinations, setDestinations] =
     useState<Destination[]>(initialDestinations);
+
+  const [email, setEmail] = useState('');
 
   const addDestination = () => {
     setDestinations((prev) => {
@@ -105,6 +107,10 @@ export const DestinationsProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const updateEmail = (email: string) => {
+    setEmail(email);
+  };
+
   //export functions
   const providerValue = {
     destinations,
@@ -113,6 +119,8 @@ export const DestinationsProvider = ({ children }: { children: ReactNode }) => {
     updateDestination,
     updateStartDate,
     updateEndDate,
+    updateEmail,
+    email,
   };
 
   return (
