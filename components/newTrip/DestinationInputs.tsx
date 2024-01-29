@@ -7,22 +7,30 @@ import {
 } from '@/components/ui/tooltip';
 import { Trash } from 'lucide-react';
 import { IoSearchOutline } from 'react-icons/io5';
-import { DatePicker } from '../DatePicker';
+import { DatePicker } from './DatePicker';
 import { Button } from '../ui/button';
+import { ChangeEvent, useState } from 'react';
+import { Destination, useDestinations } from '@/app/context/destinations';
 
 interface DestinationFormProps {
-  destinations: any[];
-  onDelete: (id: number) => void;
   id: number;
   isFirst: boolean;
+  destination: Destination;
 }
 
 const DestinationInputs = ({
-  destinations,
-  onDelete,
   id,
   isFirst,
+  destination,
 }: DestinationFormProps) => {
+  const { destinations, deleteDestination, updateDestination } =
+    useDestinations();
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    // Call onUpdateDestination to update the destination field
+    updateDestination(id, e.currentTarget.value);
+  };
+
   return (
     <div className='flex flex-col gap-3 rounded-md duration-200'>
       <div className='flex items-center justify-between gap-3'>
@@ -36,7 +44,8 @@ const DestinationInputs = ({
                 <Button
                   variant='outline'
                   size='icon'
-                  onClick={() => onDelete(id)}
+                  onClick={() => deleteDestination(id)}
+                  asChild
                 >
                   <Trash className='h-4 w-4' />
                 </Button>
@@ -48,10 +57,16 @@ const DestinationInputs = ({
           </TooltipProvider>
         )}
       </div>
-      <Input placeholder='Search destination' Icon={IoSearchOutline} />
+      <Input
+        placeholder='Search destination'
+        Icon={IoSearchOutline}
+        value={destination.destination}
+        onChange={handleChange}
+      />
+
       <div className='flex gap-3'>
-        <DatePicker placeholder='Start date' />
-        <DatePicker placeholder='End date' />
+        <DatePicker placeholder='Start date' id={id} type='start' />
+        <DatePicker placeholder='End date' id={id} type='end' />
       </div>
     </div>
   );

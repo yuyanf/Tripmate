@@ -12,13 +12,29 @@ import {
 } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
+import { useDestinations } from '@/app/context/destinations';
 
 interface Prop {
   placeholder: string;
+  id: number;
+  type: 'start' | 'end';
 }
 
-export function DatePicker({ placeholder }: Prop) {
+export function DatePicker({ placeholder, id, type }: Prop) {
   const [date, setDate] = useState<Date>();
+  const { updateStartDate, updateEndDate } = useDestinations();
+
+  const handleSelect = (date: Date | undefined) => {
+    setDate(date);
+
+    if (!date) return;
+
+    if (type === 'start') {
+      updateStartDate(id, date);
+    } else {
+      updateEndDate(id, date);
+    }
+  };
 
   return (
     <Popover>
@@ -38,8 +54,9 @@ export function DatePicker({ placeholder }: Prop) {
         <Calendar
           mode='single'
           selected={date}
-          onSelect={setDate}
+          onSelect={handleSelect}
           initialFocus
+          fromDate={new Date()}
         />
       </PopoverContent>
     </Popover>
