@@ -1,47 +1,23 @@
 'use client';
 
 import { PlusIcon } from 'lucide-react';
-import { useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import DestinationInputs from './DestinationInputs';
 import { Button } from '../ui/button';
-
-const initialDestinations = [
-  {
-    id: 0,
-    destination: '',
-    startDate: '',
-    endDate: '',
-  },
-];
+import { Destination, useDestinations } from '@/app/context/destinations';
 
 const DestinationList = () => {
-  const [destinations, setDestinations] = useState<any[]>(initialDestinations);
-
-  const addDestination = () => {
-    setDestinations((prev) => {
-      return [
-        ...prev,
-        { id: prev.length, destination: '', startDate: '', endDate: '' },
-      ];
-    });
-  };
-
-  const deleteDestination = (id: number) => {
-    if (destinations.length === 1) return;
-    setDestinations((prev) => prev.filter((dest) => dest.id !== id));
-  };
+  const { destinations, addDestination } = useDestinations();
 
   return (
     <div className='flex flex-col gap-6'>
-      {/* TODO: create unique indices for each DestinationInputs */}
       <ul className='flex flex-col gap-14'>
         {destinations.map((destination, index) => (
-          <li key={index}>
+          <li key={destination.id}>
             <DestinationInputs
-              id={index}
+              id={destination.id}
+              destination={destination}
               isFirst={index === 0}
-              destinations={destinations}
-              onDelete={deleteDestination}
             />
           </li>
         ))}
