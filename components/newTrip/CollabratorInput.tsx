@@ -5,7 +5,7 @@ import { ChangeEvent } from 'react';
 import { CiMail } from 'react-icons/ci';
 import { Input } from '../ui/iconInput';
 
-function CollabratorInputs() {
+function CollabratorInput() {
   const { email, updateEmail } = useDestinations();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -14,9 +14,9 @@ function CollabratorInputs() {
 
   return (
     <div className='flex flex-col gap-6 rounded-md '>
-      <h3 className='text-xl font-medium tracking-tight'>
+      <h2 className='text-xl font-medium tracking-tight'>
         Invite trip collaborator
-      </h3>
+      </h2>
       <Input
         className='placeholder:italic'
         placeholder='tripmate@gmail.com'
@@ -29,4 +29,4 @@ function CollabratorInputs() {
   );
 }
 
-export default CollabratorInputs;
+export default CollabratorInput;
