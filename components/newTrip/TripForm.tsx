@@ -1,9 +1,8 @@
+import { GiPartyPopper } from 'react-icons/gi';
 import { Button } from '../ui/button';
 import CollabratorInputs from './CollabratorInputs';
-import Collabrator from './CollabratorInputs';
 import DestinationList from './DestinationList';
 import PeopleInputs from './PeopleInputs';
-import { GiPartyPopper } from 'react-icons/gi';
 
 const TripForm = () => {
   return (
