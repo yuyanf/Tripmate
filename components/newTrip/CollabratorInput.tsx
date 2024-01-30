@@ -15,7 +15,8 @@ function CollabratorInput() {
   return (
     <div className='flex flex-col gap-6 rounded-md '>
       <h2 className='text-xl font-medium tracking-tight'>
-        Invite trip collaborator
+        Invite trip collaborator{' '}
+        <span className='text-sm opacity-60'>(optional)</span>
       </h2>
       <Input
         className='placeholder:italic'
