@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ReactNode, createContext, useContext, useState } from 'react';
+import { ReactNode, createContext, useContext, useState } from 'react';
 
 export type Destination = {
   id: number;
@@ -20,9 +20,11 @@ type DestinationsContextType = {
 
   // People & Relationship
 
-  //budget
   email?: string;
   updateEmail: (email: string) => void;
+
+  budget?: string;
+  updateBudget: (budget: string) => void;
 };
 
 const initialDestinations = [
@@ -45,6 +47,7 @@ export const DestinationsProvider = ({ children }: { children: ReactNode }) => {
     useState<Destination[]>(initialDestinations);
 
   const [email, setEmail] = useState('');
+  const [budget, setBudget] = useState('');
 
   const addDestination = () => {
     setDestinations((prev) => {
@@ -111,6 +114,10 @@ export const DestinationsProvider = ({ children }: { children: ReactNode }) => {
     setEmail(email);
   };
 
+  const updateBudget = (budget: string) => {
+    setBudget(budget);
+  };
+
   //export functions
   const providerValue = {
     destinations,
@@ -121,6 +128,8 @@ export const DestinationsProvider = ({ children }: { children: ReactNode }) => {
     updateEndDate,
     updateEmail,
     email,
+    updateBudget,
+    budget,
   };
 
   return (

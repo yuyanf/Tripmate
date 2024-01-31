@@ -1,11 +1,11 @@
 'use client';
 
-import React, { ChangeEvent } from 'react';
-import { Input } from '../ui/iconInput';
-import { CiMail } from 'react-icons/ci';
 import { useDestinations } from '@/app/context/destinations';
+import { ChangeEvent } from 'react';
+import { CiMail } from 'react-icons/ci';
+import { Input } from '../ui/iconInput';
 
-function CollabratorInputs() {
+function CollabratorInput() {
   const { email, updateEmail } = useDestinations();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -14,9 +14,10 @@ function CollabratorInputs() {
 
   return (
     <div className='flex flex-col gap-6 rounded-md '>
-      <h3 className='text-xl font-medium tracking-tight'>
-        Invite trip collabrator
-      </h3>
+      <h2 className='text-xl font-medium tracking-tight'>
+        Invite trip collaborator{' '}
+        <span className='text-sm opacity-60'>(optional)</span>
+      </h2>
       <Input
         className='placeholder:italic'
         placeholder='tripmate@gmail.com'
@@ -29,4 +30,4 @@ function CollabratorInputs() {
   );
 }
 
-export default CollabratorInputs;
+export default CollabratorInput;
