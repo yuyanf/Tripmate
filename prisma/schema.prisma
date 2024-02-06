@@ -74,5 +74,5 @@ model City {
   population  Int?
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
-  Destination Destination[]
+  items Destination[]
 }

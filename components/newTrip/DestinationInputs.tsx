@@ -9,8 +9,9 @@ import { Trash } from 'lucide-react';
 import { IoSearchOutline } from 'react-icons/io5';
 import { DatePicker } from './DatePicker';
 import { Button } from '../ui/button';
-import { ChangeEvent, useState } from 'react';
-import { Destination, useDestinations } from '@/app/context/destinations';
+import { ChangeEvent, useState, useTransition } from 'react';
+import { City, Destination, useDestinations } from '@/app/context/destinations';
+import { debounce } from '@/lib/utils';
 
 interface DestinationFormProps {
   id: number;
@@ -23,12 +24,32 @@ const DestinationInputs = ({
   isFirst,
   destination,
 }: DestinationFormProps) => {
-  const { destinations, deleteDestination, updateDestination } =
-    useDestinations();
+  const {
+    destinations,
+    deleteDestination,
+    updateDestination,
+    updateCity,
+    cities,
+  } = useDestinations();
+
+  const [filteredCities, setFilteredCities] = useState<City[]>([]);
+
+  const handleSearchCity = debounce((value: string) => {
+    const searchedCities = cities.filter((city) =>
+      city.name.toLowerCase().startsWith(value.toLowerCase())
+    );
+    setFilteredCities(searchedCities);
+  }, 300);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // Call onUpdateDestination to update the destination field
     updateDestination(id, e.currentTarget.value);
+    handleSearchCity(e.currentTarget.value);
+  };
+
+  const handleCity = (city: City) => {
+    updateCity(city);
+    updateDestination(id, city.name);
+    setFilteredCities([]);
   };
 
   return (
@@ -57,12 +78,32 @@ const DestinationInputs = ({
           </TooltipProvider>
         )}
       </div>
-      <Input
-        placeholder='Search destination'
-        Icon={IoSearchOutline}
-        value={destination.destination}
-        onChange={handleChange}
-      />
+      <div className='relative'>
+        <Input
+          placeholder='Search destination (cities only)'
+          Icon={IoSearchOutline}
+          value={destination.destination}
+          onChange={handleChange}
+        />
+        {filteredCities.length > 0 && destination.destination && (
+          <ul className='absolute top-10 z-40 max-h-60 w-full items-center overflow-y-auto rounded-md border border-input bg-white p-2 shadow-md'>
+            {filteredCities.map((city: City) => (
+              <li
+                className='cursor-pointer flex-col rounded-md  hover:bg-accent'
+                key={city.id}
+              >
+                <Button
+                  className='w-full justify-start'
+                  variant='link'
+                  onClick={() => handleCity(city)}
+                >
+                  {city.name}
+                </Button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
 
       <div className='flex gap-3'>
         <DatePicker placeholder='Start date' id={id} type='start' />

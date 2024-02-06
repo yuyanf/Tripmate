@@ -1,3 +1,5 @@
+'use client';
+
 import { GiPartyPopper } from 'react-icons/gi';
 import { Button } from '../ui/button';
 import BudgetInput from './BudgetInput';
