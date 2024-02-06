@@ -42,7 +42,7 @@ type DestinationsContextType = {
   getAllCities: (city: string) => void;
   updateCity: (city: City) => void;
   cities: City[];
-  city: City;
+  city: City | undefined;
 
   email?: string;
   updateEmail: (email: string) => void;
