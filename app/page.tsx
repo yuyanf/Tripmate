@@ -13,23 +13,29 @@ const HomePage = () => {
   return (
     <main className='mx-auto max-w-7xl px-6'>
       <div className='flex min-h-screen flex-col gap-6 py-10 sm:gap-10'>
-        <motion.div
-          initial={{ opacity: 0, y: -40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: 'easeInOut', delay: 0.2 }}
-        >
-          <span className='inline-block w-full bg-[url("/plane_sky.jpg")] bg-clip-text text-center text-lg font-bold tracking-wide text-transparent sm:text-xl lg:text-4xl'>
+        <div>
+          <motion.span
+            initial={{ opacity: 0, y: -40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5, ease: 'easeInOut', delay: 1.5 }}
+            className='inline-block w-full bg-[url("/plane_sky.jpg")] bg-clip-text text-center text-lg font-bold tracking-wide text-transparent sm:text-xl lg:text-4xl'
+          >
             Tripmate
-          </span>
-          <h1 className='text-balance bg-[url("/plane_sky.jpg")] bg-clip-text text-center text-4xl font-extrabold leading-none tracking-tight text-transparent sm:text-8xl lg:text-[160px]'>
+          </motion.span>
+          <motion.h1
+            initial={{ opacity: 0, y: -40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5, ease: 'easeInOut' }}
+            className='text-balance bg-[url("/plane_sky.jpg")] bg-clip-text text-center text-4xl font-extrabold leading-none tracking-tight text-transparent sm:text-8xl lg:text-[160px]'
+          >
             Make your travels memorable
-          </h1>
-        </motion.div>
+          </motion.h1>
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: 'easeInOut', delay: 0.2 }}
+          transition={{ duration: 1.5, ease: 'easeInOut' }}
         >
           <Image
             src='/plane_sky.jpg'
