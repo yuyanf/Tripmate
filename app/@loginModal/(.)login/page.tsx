@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Dialog,
@@ -7,8 +7,8 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { useRouter } from 'next/navigation';
+} from "@/components/ui/dialog";
+import { useRouter } from "next/navigation";
 
 const LoginModal = () => {
   const router = useRouter();
