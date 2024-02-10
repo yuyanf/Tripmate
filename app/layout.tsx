@@ -15,9 +15,11 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
   loginModal,
+  signupModal,
 }: {
   children: React.ReactNode;
   loginModal: React.ReactNode;
+  signupModal: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -26,6 +28,7 @@ export default function RootLayout({
           <Header />
           {children}
           {loginModal}
+          {signupModal}
         </DestinationsProvider>
       </body>
     </html>

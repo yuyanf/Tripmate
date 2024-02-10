@@ -15,10 +15,10 @@ const HomePage = () => {
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-center py-6 sm:py-20 md:py-40 ">
         <div>
           <motion.span
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5, ease: "easeInOut", delay: 1.5 }}
-            className='inline-block w-full bg-[url("/plane_sky.jpg")] bg-clip-text text-center text-lg font-bold tracking-wide text-transparent sm:text-xl lg:text-4xl'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeInOut", delay: 1.5 }}
+            className='inline-block w-full bg-[url("/plane_sky.jpg")] bg-clip-text text-center text-lg font-semibold text-transparent sm:text-2xl lg:text-4xl'
           >
             Tripmate
           </motion.span>

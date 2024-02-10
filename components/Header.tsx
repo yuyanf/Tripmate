@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "./Logo";
+import { Button } from "./ui/button";
 
 const Header = () => {
   return (
@@ -9,19 +10,13 @@ const Header = () => {
           <Logo className="h-full w-20 sm:w-40" />
         </Link>
 
-        <div className="flex gap-2 sm:gap-4">
-          <Link
-            href="/login"
-            className="text-md whitespace-nowrap rounded-lg border px-4 py-2 sm:text-lg"
-          >
-            Login
-          </Link>
-          <Link
-            href="/sign-up"
-            className="text-md whitespace-nowrap rounded-lg border px-4 py-2 sm:text-lg"
-          >
-            Sign up
-          </Link>
+        <div className="flex gap-2">
+          <Button asChild className="rounded-full">
+            <Link href="/login">Login</Link>
+          </Button>
+          <Button asChild variant="secondary" className="rounded-full">
+            <Link href="/sign-up">Sign up</Link>
+          </Button>
         </div>
       </div>
     </header>
