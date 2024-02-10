@@ -2,7 +2,6 @@
 
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -14,20 +13,18 @@ const LoginModal = () => {
   const router = useRouter();
 
   return (
-    <Dialog open={true}>
+    <Dialog
+      open={true}
+      onOpenChange={() => {
+        router.back();
+      }}
+    >
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Log in</DialogTitle>
           <DialogDescription>
             You need to log in to store and manage your trips
           </DialogDescription>
-          <DialogClose
-            onClick={() => {
-              router.back();
-            }}
-          >
-            Close
-          </DialogClose>
         </DialogHeader>
       </DialogContent>
     </Dialog>
