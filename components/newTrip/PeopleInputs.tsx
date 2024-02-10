@@ -39,9 +39,9 @@ const PeopleInputs = () => {
         <h2 className='text-xl font-medium tracking-tight'>
           How many people are going?
         </h2>
-        <div className='flex justify-between gap-2 rounded-md border border-gray-200 p-1'>
+        <div className='flex justify-between gap-2 rounded-md border border-gray-200 bg-white p-1'>
           <div className='flex items-center gap-2'>
-            <p className='text-md border-border-color flex h-full items-center rounded-md border bg-gray-100 px-6 font-semibold'>
+            <p className='border-border-color flex h-full items-center rounded-md border bg-gray-100 px-4 text-sm font-medium'>
               {people}
             </p>
             <span>{people === 1 ? 'Person' : 'People'}</span>

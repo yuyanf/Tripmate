@@ -10,9 +10,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { useDestinations } from '@/context/destinations';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
-import { useDestinations } from '@/app/context/destinations';
 
 interface Prop {
   placeholder: string;

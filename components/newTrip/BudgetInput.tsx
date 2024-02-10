@@ -1,6 +1,6 @@
 'use client';
 
-import { useDestinations } from '@/app/context/destinations';
+import { useDestinations } from '@/context/destinations';
 
 import {
   Select,

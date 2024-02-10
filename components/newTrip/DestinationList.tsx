@@ -1,10 +1,9 @@
 'use client';
 
+import { useDestinations } from '@/context/destinations';
 import { PlusIcon } from 'lucide-react';
-import { ChangeEvent, useEffect, useState } from 'react';
-import DestinationInputs from './DestinationInputs';
 import { Button } from '../ui/button';
-import { Destination, useDestinations } from '@/app/context/destinations';
+import DestinationInputs from './DestinationInputs';
 
 const DestinationList = () => {
   const { destinations, addDestination } = useDestinations();

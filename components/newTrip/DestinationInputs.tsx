@@ -5,13 +5,13 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { Trash } from 'lucide-react';
-import { IoSearchOutline } from 'react-icons/io5';
-import { DatePicker } from './DatePicker';
-import { Button } from '../ui/button';
-import { ChangeEvent, useState, useTransition } from 'react';
-import { City, Destination, useDestinations } from '@/app/context/destinations';
+import { City, Destination, useDestinations } from '@/context/destinations';
 import { debounce } from '@/lib/utils';
+import { Trash } from 'lucide-react';
+import { ChangeEvent, useState } from 'react';
+import { IoSearchOutline } from 'react-icons/io5';
+import { Button } from '../ui/button';
+import { DatePicker } from './DatePicker';
 
 interface DestinationFormProps {
   id: number;
@@ -61,15 +61,11 @@ const DestinationInputs = ({
         {destinations.length > 1 && (
           <TooltipProvider delayDuration={300}>
             <Tooltip>
-              <TooltipTrigger>
-                <Button
-                  variant='outline'
-                  size='icon'
-                  onClick={() => deleteDestination(id)}
-                  asChild
-                >
-                  <Trash className='h-4 w-4' />
-                </Button>
+              <TooltipTrigger
+                onClick={() => deleteDestination(id)}
+                className='inline-flex h-10 w-10 items-center justify-center whitespace-nowrap rounded-md border border-input bg-background text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50'
+              >
+                <Trash className='h-4 w-4' />
               </TooltipTrigger>
               <TooltipContent>
                 <p>Delete destination</p>
