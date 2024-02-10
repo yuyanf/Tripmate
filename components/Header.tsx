@@ -3,8 +3,8 @@ import Logo from './Logo';
 
 const Header = () => {
   return (
-    <header className='fixed inset-x-0 top-0 z-50 mx-auto h-20 px-6 backdrop-blur-md'>
-      <div className='flex h-full w-full max-w-7xl items-center justify-between'>
+    <header className='fixed inset-x-0 top-0 z-50 h-20 px-6 backdrop-blur-md'>
+      <div className='mx-auto flex h-full w-full max-w-7xl items-center justify-between'>
         <Link href='/'>
           <Logo className='h-full w-40' />
         </Link>
