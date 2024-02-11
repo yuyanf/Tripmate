@@ -8,10 +8,10 @@ const Background = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1.5, ease: "easeInOut" }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
       className="fixed inset-0 isolate -z-10"
     >
-      <div className="fixed inset-0 top-20 z-20 bg-gradient-to-t from-black to-white opacity-50" />
+      <div className="fixed inset-0 top-20 z-20 bg-gradient-to-t from-black to-transparent opacity-80" />
       <Image
         src="/fuji_pink_tint.jpg"
         alt="Fuji"

@@ -83,11 +83,6 @@
   }
 }
 
-.radial-gradient {
-  background: rgb(0, 0, 0);
-  background: radial-gradient(
-    circle,
-    rgba(0, 0, 0, 0) 27%,
-    rgba(0, 0, 0, 0.5102415966386555) 83%
-  );
+.cl-modalBackdrop {
+  align-items: center;
 }
