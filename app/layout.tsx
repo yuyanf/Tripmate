@@ -1,3 +1,4 @@
+import Background from "@/components/Background";
 import Header from "@/components/Header";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -23,13 +24,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, "bg-stone-50 pt-20")}>
+      <body className={cn(inter.className, "bg-stone-50")}>
         <DestinationsProvider>
           <Header />
           {children}
           {loginModal}
           {signupModal}
         </DestinationsProvider>
+        <Background />
       </body>
     </html>
   );
