@@ -1,7 +1,7 @@
+import { Button } from "@/components/ui/button";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
-import LoginModal from "./LoginModal";
 import Logo from "./Logo";
-import SignupModal from "./SignupModal";
 
 const Header = () => {
   return (
@@ -12,8 +12,14 @@ const Header = () => {
         </Link>
 
         <div className="flex gap-2">
-          <LoginModal />
-          <SignupModal />
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+          <SignedOut>
+            <SignInButton mode="modal">
+              <Button>Sign in</Button>
+            </SignInButton>
+          </SignedOut>
         </div>
       </div>
     </header>
