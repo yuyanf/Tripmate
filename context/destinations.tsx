@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   ReactNode,
@@ -6,8 +6,8 @@ import {
   useContext,
   useEffect,
   useState,
-} from 'react';
-import axios from 'axios';
+} from "react";
+import axios from "axios";
 
 export type Destination = {
   id: number;
@@ -57,7 +57,7 @@ const initialDestinations = [
     cityId: undefined,
     items: undefined,
     tripId: undefined,
-    destination: '',
+    destination: "",
     startDate: undefined,
     endDate: undefined,
   },
@@ -73,8 +73,8 @@ export const DestinationsProvider = ({ children }: { children: ReactNode }) => {
   const [destinations, setDestinations] =
     useState<Destination[]>(initialDestinations);
 
-  const [email, setEmail] = useState('');
-  const [budget, setBudget] = useState('');
+  const [email, setEmail] = useState("");
+  const [budget, setBudget] = useState("");
   const [cities, setCities] = useState<City[]>([]);
   const [city, setCity] = useState<City | undefined>(undefined);
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -85,7 +85,7 @@ export const DestinationsProvider = ({ children }: { children: ReactNode }) => {
         ...prev,
         {
           id: Math.floor(Math.random() * 1000),
-          destination: '',
+          destination: "",
           cityId: undefined,
           items: undefined,
           tripId: undefined,
@@ -156,7 +156,7 @@ export const DestinationsProvider = ({ children }: { children: ReactNode }) => {
       const response = await axios.get(`${BASE_URL}/cities`);
       return response.data;
     } catch (error) {
-      console.error('Error fetching cities:', error);
+      console.error("Error fetching cities:", error);
     }
   };
 
@@ -164,13 +164,13 @@ export const DestinationsProvider = ({ children }: { children: ReactNode }) => {
     setCity(city);
   };
 
-  useEffect(() => {
-    const fetchCities = async () => {
-      const cities = await getAllCities();
-      if (cities) setCities(cities);
-    };
-    fetchCities();
-  }, []);
+  // useEffect(() => {
+  //   const fetchCities = async () => {
+  //     const cities = await getAllCities();
+  //     if (cities) setCities(cities);
+  //   };
+  //   fetchCities();
+  // }, []);
 
   //export functions
   const providerValue = {
@@ -202,7 +202,7 @@ export const useDestinations = () => {
   const context = useContext(DestinationsContext);
   if (!context) {
     throw new Error(
-      'useDestinations must be used within a DestinationsProvider'
+      "useDestinations must be used within a DestinationsProvider"
     );
   }
   return context;
