@@ -164,13 +164,13 @@ export const DestinationsProvider = ({ children }: { children: ReactNode }) => {
     setCity(city);
   };
 
-  // useEffect(() => {
-  //   const fetchCities = async () => {
-  //     const cities = await getAllCities();
-  //     if (cities) setCities(cities);
-  //   };
-  //   fetchCities();
-  // }, []);
+  useEffect(() => {
+    const fetchCities = async () => {
+      const cities = await getAllCities();
+      if (cities) setCities(cities);
+    };
+    fetchCities();
+  }, []);
 
   //export functions
   const providerValue = {

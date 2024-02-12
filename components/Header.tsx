@@ -18,7 +18,7 @@ const Header = () => {
             <UserButton />
           </SignedIn>
           <SignedOut>
-            <SignInButton mode="modal">
+            <SignInButton mode="modal" redirectUrl="/my-trips">
               <Button>Sign in</Button>
             </SignInButton>
           </SignedOut>
