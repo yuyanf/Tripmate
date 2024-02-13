@@ -76,9 +76,13 @@
   }
 
   /* Remove default number input handles (up/down arrow)*/
-  input[type='number']::-webkit-inner-spin-button,
-  input[type='number']::-webkit-outer-spin-button {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
+}
+
+.cl-modalBackdrop {
+  align-items: center;
 }

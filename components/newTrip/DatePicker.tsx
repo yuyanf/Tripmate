@@ -1,23 +1,23 @@
-'use client';
+"use client";
 
-import { format } from 'date-fns';
-import { Calendar as CalendarIcon } from 'lucide-react';
+import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
 
-import { Button } from '@/components/ui/button';
-import { Calendar } from '@/components/ui/calendar';
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import { useDestinations } from '@/context/destinations';
-import { cn } from '@/lib/utils';
-import { useState } from 'react';
+} from "@/components/ui/popover";
+import { useDestinations } from "@/context/destinations";
+import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 interface Prop {
   placeholder: string;
   id: number;
-  type: 'start' | 'end';
+  type: "start" | "end";
 }
 
 export function DatePicker({ placeholder, id, type }: Prop) {
@@ -29,7 +29,7 @@ export function DatePicker({ placeholder, id, type }: Prop) {
 
     if (!date) return;
 
-    if (type === 'start') {
+    if (type === "start") {
       updateStartDate(id, date);
     } else {
       updateEndDate(id, date);
@@ -40,19 +40,19 @@ export function DatePicker({ placeholder, id, type }: Prop) {
     <Popover>
       <PopoverTrigger asChild>
         <Button
-          variant={'outline'}
+          variant={"outline"}
           className={cn(
-            'w-full justify-start text-left font-normal',
-            !date && 'text-muted-foreground'
+            "w-full justify-start text-left font-normal",
+            !date && "text-muted-foreground"
           )}
         >
-          <CalendarIcon className='mr-2 h-4 w-4' />
-          {date ? format(date, 'PPP') : <span>{placeholder}</span>}
+          <CalendarIcon className="mr-2 h-4 w-4" />
+          {date ? format(date, "PPP") : <span>{placeholder}</span>}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className='w-auto p-0'>
+      <PopoverContent className="w-auto p-0">
         <Calendar
-          mode='single'
+          mode="single"
           selected={date}
           onSelect={handleSelect}
           initialFocus
