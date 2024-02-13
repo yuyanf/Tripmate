@@ -3,14 +3,15 @@ import Image from "next/image";
 const Background = () => {
   return (
     <div className="fixed inset-0 isolate -z-10">
-      <div className="fixed inset-0 top-20 z-20 bg-gradient-to-t from-black to-transparent opacity-80" />
+      <div className="fixed inset-0 z-0 bg-black opacity-45" />
       <Image
-        src="/fuji_pink_tint.jpg"
+        src="/fuji_pink_tint.png"
         alt="Fuji"
-        width={1920}
-        height={1249}
+        width={2904}
+        height={1896}
         priority
-        className="z-10 h-full w-full rounded-3xl "
+        quality={100}
+        className="z-10 h-full w-full object-cover"
       />
     </div>
   );

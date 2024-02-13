@@ -1,3 +1,4 @@
+import Background from "@/components/Background";
 import Header from "@/components/Header";
 import { DestinationsProvider } from "@/context/destinations";
 import { cn } from "@/lib/utils";
@@ -26,6 +27,7 @@ export default function RootLayout({
         <ClerkProvider>
           <DestinationsProvider>
             <Header />
+            <Background />
             {children}
           </DestinationsProvider>
         </ClerkProvider>
