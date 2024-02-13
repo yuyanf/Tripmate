@@ -3,7 +3,7 @@ import Image from "next/image";
 const Background = () => {
   return (
     <div className="fixed inset-0 isolate -z-10">
-      <div className="fixed inset-0 z-0 bg-black opacity-45" />
+      <div className="fixed inset-0 z-0 bg-black opacity-70" />
       <Image
         src="/fuji_pink_tint.png"
         alt="Fuji"
