@@ -1,4 +1,6 @@
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 const Header = () => {
   return (
@@ -8,9 +10,16 @@ const Header = () => {
           Tripmate
         </Link>
 
-        <Link href="/login" className="rounded-lg px-4 py-2 text-lg">
-          Login
-        </Link>
+        <div className="flex gap-2">
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+          <SignedOut>
+            <SignInButton mode="modal">
+              <Button>Sign in</Button>
+            </SignInButton>
+          </SignedOut>
+        </div>
       </div>
     </header>
   );
