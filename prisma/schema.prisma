@@ -55,11 +55,14 @@ model Trip {
   startDate      DateTime
   endDate        DateTime
   items          Destination[]
+  userId         Int
+  user           User          @relation(fields: [userId], references: [id])
   image          Int?
   numberOfPeople Int
   relationship   String?
   totalBudget    String?
   editors        String[] //user ids that are editor for this trip
+  status         String
   createdAt      DateTime      @default(now())
   updatedAt      DateTime      @updatedAt
 }
@@ -74,5 +77,15 @@ model City {
   population  Int?
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
-  items Destination[]
+  items       Destination[]
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  firstName String
+  lastName  String
+  email     String
+  items     Trip[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
