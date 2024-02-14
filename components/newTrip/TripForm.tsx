@@ -7,7 +7,6 @@ import BudgetInput from "./BudgetInput";
 import CollabratorInput from "./CollabratorInput";
 import DestinationList from "./DestinationList";
 import PeopleInputs from "./PeopleInputs";
-import { useUser } from "@clerk/nextjs";
 
 export type User = {
   id: number;
@@ -32,7 +31,7 @@ const TripForm = () => {
         body: JSON.stringify(tripData),
       });
 
-      if (response.ok) {
+      if (response.status === 201) {
         console.log("Trip created successfully");
       } else {
         console.error("Failed to create trip");
@@ -50,7 +49,6 @@ const TripForm = () => {
       <CollabratorInput />
 
       <Button className="mx-auto mt-6" onClick={createTrip}>
-        {/* <GiPartyPopper className="mr-2 h-5 w-5" /> */}
         <Plane className="mr-2 h-5 w-5" />
         Create trip
       </Button>
