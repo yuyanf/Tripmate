@@ -1,7 +1,7 @@
 "use client";
 
 import { useDestinations } from "@/context/destinations";
-import { PlusIcon } from "lucide-react";
+import { Plus } from "lucide-react";
 import { Button } from "../ui/button";
 import DestinationInputs from "./DestinationInputs";
 
@@ -22,7 +22,7 @@ const DestinationList = () => {
         ))}
       </ul>
       <Button onClick={addDestination} className="mx-auto mt-6">
-        <PlusIcon className="mr-2 h-5 w-5" />
+        <Plus className="mr-2 h-5 w-5" />
         Add destination
       </Button>
     </div>

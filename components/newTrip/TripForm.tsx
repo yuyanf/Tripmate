@@ -1,6 +1,7 @@
 "use client";
 
-import { GiPartyPopper } from "react-icons/gi";
+import { Plane } from "lucide-react";
+
 import { Button } from "../ui/button";
 import BudgetInput from "./BudgetInput";
 import CollabratorInput from "./CollabratorInput";
@@ -17,30 +18,27 @@ export type User = {
 };
 
 const TripForm = () => {
-  const { isSignedIn, user, isLoaded } = useUser();
+  const tripData = {};
 
-  const createUser = async () => {
-    if (!isSignedIn) return;
+  const base_url = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-    const { firstName, lastName, primaryEmailAddress: email } = user;
-    const userData = { firstName, lastName, email, trips: [] };
-
+  const createTrip = async () => {
     try {
-      const response = await fetch("/api/createUser", {
+      const response = await fetch(`${base_url}/trip`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(userData),
+        body: JSON.stringify(tripData),
       });
 
       if (response.ok) {
-        console.log("User created successfully");
+        console.log("Trip created successfully");
       } else {
-        console.error("Failed to create user");
+        console.error("Failed to create trip");
       }
     } catch (error) {
-      console.error("Error creating user:", error);
+      console.error("Error creating trip:", error);
     }
   };
 
@@ -50,8 +48,10 @@ const TripForm = () => {
       <PeopleInputs />
       <BudgetInput />
       <CollabratorInput />
-      <Button className="mx-auto mt-6" onClick={createUser}>
-        <GiPartyPopper className="mr-2 h-5 w-5" />
+
+      <Button className="mx-auto mt-6" onClick={createTrip}>
+        {/* <GiPartyPopper className="mr-2 h-5 w-5" /> */}
+        <Plane className="mr-2 h-5 w-5" />
         Create trip
       </Button>
     </div>

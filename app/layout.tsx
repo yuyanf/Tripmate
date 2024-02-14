@@ -1,10 +1,9 @@
 import Header from "@/components/Header";
-import { DestinationsProvider } from "@/context/destinations";
 import { cn } from "@/lib/utils";
-import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
+import Providers from "@/components/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,12 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(inter.className, "bg-stone-50")}>
-        <ClerkProvider>
-          <DestinationsProvider>
-            <Header />
-            {children}
-          </DestinationsProvider>
-        </ClerkProvider>
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   );
