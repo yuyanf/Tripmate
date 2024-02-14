@@ -10,6 +10,7 @@ const Background = () => {
         width={2904}
         height={1896}
         sizes="100vw"
+        placeholder="blur"
         priority
         className="z-10 h-full w-full object-cover"
       />
