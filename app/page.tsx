@@ -16,10 +16,10 @@ const HomePage = () => {
               Make your travels
             </motion.h1>
             <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, ease: "easeInOut", delay: 1.5 }}
-              className="text-4xl font-bold leading-none tracking-tight sm:text-7xl lg:text-[160px]"
+              className="inline-block text-4xl font-bold leading-none tracking-tight sm:text-7xl lg:text-[160px]"
             >
               memorable
             </motion.span>

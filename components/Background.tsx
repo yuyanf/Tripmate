@@ -11,6 +11,7 @@ const Background = () => {
         height={1896}
         sizes="100vw"
         placeholder="blur"
+        blurDataURL="/kayak.png"
         priority
         className="z-10 h-full w-full object-cover"
       />

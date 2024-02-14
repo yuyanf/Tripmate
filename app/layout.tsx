@@ -22,10 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(inter.className, "bg-stone-50")}>
+        <Background />
         <ClerkProvider>
           <DestinationsProvider>
             <Header />
-            <Background />
             {children}
           </DestinationsProvider>
         </ClerkProvider>
