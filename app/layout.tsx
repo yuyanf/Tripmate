@@ -16,10 +16,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  loginModal,
 }: {
   children: React.ReactNode;
-  loginModal: React.ReactNode;
 }) {
   return (
     <html lang="en">
