@@ -7,12 +7,7 @@ const Background = () => {
       <Image
         src="/kayak.png"
         alt="Small Island topdown view"
-        width={2904}
-        height={1896}
-        sizes="100vw"
         placeholder="blur"
-        blurDataURL="/kayak.png"
-        priority
         className="z-10 h-full w-full object-cover"
       />
     </div>
