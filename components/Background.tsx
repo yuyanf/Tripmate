@@ -8,8 +8,9 @@ const Background = () => {
         src="/kayak.png"
         alt="Small Island topdown view"
         placeholder="blur"
-        priority
+        quality={100}
         fill
+        sizes="100vw"
         className="z-10 object-cover"
       />
     </div>
