@@ -9,7 +9,8 @@ const Background = () => {
         alt="Small Island topdown view"
         placeholder="blur"
         priority
-        className="z-10 h-full w-full object-cover"
+        fill
+        className="z-10 object-cover"
       />
     </div>
   );
