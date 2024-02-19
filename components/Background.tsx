@@ -8,6 +8,7 @@ const Background = () => {
         src="/kayak.png"
         alt="Small Island topdown view"
         placeholder="blur"
+        blurDataURL="/kayak.png"
         quality={100}
         fill
         sizes="100vw"
