@@ -5,13 +5,14 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { City, Destination, useDestinations } from "@/context/destinations";
+import { useDestinations } from "@/context/destinations";
 import { debounce } from "@/lib/utils";
 import { Trash } from "lucide-react";
 import { ChangeEvent, useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { Button } from "../ui/button";
 import { DatePicker } from "./DatePicker";
+import { City, Destination } from "@/types";
 
 interface DestinationFormProps {
   id: number;
@@ -42,13 +43,13 @@ const DestinationInputs = ({
   }, 300);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    updateDestination(id, e.currentTarget.value);
+    updateDestination(id, e.currentTarget.value, 0);
     handleSearchCity(e.currentTarget.value);
   };
 
   const handleCity = (city: City) => {
     updateCity(city);
-    updateDestination(id, city.name);
+    updateDestination(id, city.name, city.id);
     setFilteredCities([]);
   };
 

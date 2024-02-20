@@ -16,7 +16,7 @@ model ItineraryItem {
   startTime   DateTime?
   endTime     DateTime?
   address     String?
-  reservation Json //if need /reserved or not
+  reservation Json //{isNeeded: boolean  isReserved:boolean}
   itineraryId Int // Foreign key relationship with Intinerary
   itinerary   Itinerary @relation(fields: [itineraryId], references: [id])
   tags        String[] //brunch or cafe or attraction etc

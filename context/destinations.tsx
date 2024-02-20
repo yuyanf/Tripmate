@@ -8,34 +8,14 @@ import {
   useState,
 } from "react";
 import axios from "axios";
-
-export type Destination = {
-  id: number;
-  cityId: number | undefined;
-  destination: string;
-  startDate: Date | undefined;
-  endDate: Date | undefined;
-  items: undefined; // TODO: itinerary type
-  tripId: number | undefined;
-};
-
-export type City = {
-  id: number;
-  name: string;
-  lat: string;
-  lng: string;
-  country: string | undefined;
-  countryCode: string | undefined;
-  population: number | undefined;
-  items: Destination[];
-};
+import { City, Destination } from "@/types";
 
 type DestinationsContextType = {
   // Destination
   destinations: Destination[];
   addDestination: () => void;
   deleteDestination: (id: number) => void;
-  updateDestination: (id: number, destination: string) => void;
+  updateDestination: (id: number, destination: string, cityId: number) => void;
   updateStartDate: (id: number, startDate: Date) => void;
   updateEndDate: (id: number, endDate: Date) => void;
 
@@ -101,13 +81,18 @@ export const DestinationsProvider = ({ children }: { children: ReactNode }) => {
     setDestinations((prev) => prev.filter((dest) => dest.id !== id));
   };
 
-  const updateDestination = (id: number, destination: string) => {
+  const updateDestination = (
+    id: number,
+    destination: string,
+    cityId: number
+  ) => {
     setDestinations((prevDestinations) => {
       return prevDestinations.map((dest) => {
         if (dest.id === id) {
           return {
             ...dest,
             destination,
+            cityId,
           };
         }
         return dest;
