@@ -1,8 +1,14 @@
-export type TripStatus = {
-  created: "Created";
-  deleted: "Deleted";
-  archived: "Archived";
-};
+export enum WITH_WHOM {
+  COUPLE = "couple",
+  FRIENDS = "friends",
+  FAMILY = "family",
+}
+
+export enum TRIP_STATUS {
+  CREATED = "created",
+  DELETED = "deleted",
+  ARCHIVED = "archived",
+}
 
 export type Trip = {
   id: number;
@@ -16,7 +22,7 @@ export type Trip = {
   relationship?: string;
   totalBudget?: string;
   editors: string[];
-  status: TripStatus;
+  status: TRIP_STATUS;
 };
 
 export type Destination = {

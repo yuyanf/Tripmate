@@ -8,7 +8,8 @@ import {
   useState,
 } from "react";
 import axios from "axios";
-import { City, Destination } from "@/types";
+import { City, Destination, WITH_WHOM } from "@/types";
+import { useUser } from "@clerk/nextjs";
 
 type DestinationsContextType = {
   // Destination
@@ -26,6 +27,12 @@ type DestinationsContextType = {
 
   email?: string;
   updateEmail: (email: string) => void;
+
+  people: number;
+  updatePeople: (isPlus: string) => void;
+
+  withWhom?: WITH_WHOM | undefined;
+  updateRelation: (withWhom: WITH_WHOM | undefined) => void;
 
   budget?: string;
   updateBudget: (budget: string) => void;
@@ -55,6 +62,8 @@ export const DestinationsProvider = ({ children }: { children: ReactNode }) => {
 
   const [email, setEmail] = useState("");
   const [budget, setBudget] = useState("");
+  const [people, setPeople] = useState(1);
+  const [withWhom, setWithWhom] = useState<WITH_WHOM | undefined>(undefined);
   const [cities, setCities] = useState<City[]>([]);
   const [city, setCity] = useState<City | undefined>(undefined);
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -136,6 +145,18 @@ export const DestinationsProvider = ({ children }: { children: ReactNode }) => {
     setBudget(budget);
   };
 
+  const updatePeople = (isPlus: string) => {
+    if (isPlus === "plus") {
+      setPeople((prev) => prev + 1);
+    } else {
+      setPeople((prev) => prev - 1);
+    }
+  };
+
+  const updateRelation = (withWhom: WITH_WHOM | undefined) => {
+    setWithWhom(withWhom);
+  };
+
   const getAllCities = async () => {
     try {
       const response = await axios.get(`${BASE_URL}/cities`);
@@ -173,6 +194,10 @@ export const DestinationsProvider = ({ children }: { children: ReactNode }) => {
     updateCity,
     cities,
     city,
+    people,
+    withWhom,
+    updateRelation,
+    updatePeople,
   };
 
   return (

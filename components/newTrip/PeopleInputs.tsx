@@ -1,36 +1,30 @@
 "use client";
 
 import { Minus, Plus } from "lucide-react";
-import { useState } from "react";
 import { BsBalloonHeartFill } from "react-icons/bs";
 import { FaUserFriends } from "react-icons/fa";
 import { MdFamilyRestroom } from "react-icons/md";
 import { Button } from "../ui/button";
-
-enum WITH_WHOM {
-  COUPLE = "couple",
-  FRIENDS = "friends",
-  FAMILY = "family",
-}
+import { useDestinations } from "@/context/destinations";
+import { WITH_WHOM } from "@/types";
 
 const PeopleInputs = () => {
-  const [people, setPeople] = useState(1);
-  const [withWhom, setWithWhom] = useState<WITH_WHOM | undefined>(undefined);
+  const { updatePeople, updateRelation, people, withWhom } = useDestinations();
 
-  const handleMinusPeople = () => {
+  const handleMinusPeople = (isPlus: string) => {
     if (people === 1) return;
     if (people === 2) {
-      setWithWhom(undefined);
+      updateRelation(undefined);
     }
 
-    setPeople((prev) => prev - 1);
+    updatePeople(isPlus);
   };
 
-  const handlePlusPeople = () => {
+  const handlePlusPeople = (isPlus: string) => {
     if (people === 1) {
-      setWithWhom(WITH_WHOM.FRIENDS);
+      updateRelation(WITH_WHOM.FRIENDS);
     }
-    setPeople((prev) => prev + 1);
+    updatePeople(isPlus);
   };
 
   return (
@@ -52,7 +46,7 @@ const PeopleInputs = () => {
               className="min-w-[40px]"
               variant="outline"
               size="icon"
-              onClick={handleMinusPeople}
+              onClick={() => handleMinusPeople("minus")}
             >
               <Minus className="h-3 w-3" />
             </Button>
@@ -60,7 +54,7 @@ const PeopleInputs = () => {
               className="min-w-[40px]"
               variant="outline"
               size="icon"
-              onClick={handlePlusPeople}
+              onClick={() => handlePlusPeople("plus")}
             >
               <Plus className="h-3 w-3" />
             </Button>
@@ -78,7 +72,7 @@ const PeopleInputs = () => {
               <Button
                 className="w-full"
                 variant={withWhom === WITH_WHOM.COUPLE ? "default" : "outline"}
-                onClick={() => setWithWhom(WITH_WHOM.COUPLE)}
+                onClick={() => updateRelation(WITH_WHOM.COUPLE)}
               >
                 <BsBalloonHeartFill className="mr-2 h-5 w-5" />
                 <span>Couple</span>
@@ -87,7 +81,7 @@ const PeopleInputs = () => {
             <Button
               className="w-full"
               variant={withWhom === WITH_WHOM.FRIENDS ? "default" : "outline"}
-              onClick={() => setWithWhom(WITH_WHOM.FRIENDS)}
+              onClick={() => updateRelation(WITH_WHOM.FRIENDS)}
             >
               <FaUserFriends className="mr-2 h-5 w-5" />
               <span>Friends</span>
@@ -95,7 +89,7 @@ const PeopleInputs = () => {
             <Button
               className="w-full"
               variant={withWhom === WITH_WHOM.FAMILY ? "default" : "outline"}
-              onClick={() => setWithWhom(WITH_WHOM.FAMILY)}
+              onClick={() => updateRelation(WITH_WHOM.FAMILY)}
             >
               <MdFamilyRestroom className="mr-2 h-5 w-5" />
               <span>Family</span>
